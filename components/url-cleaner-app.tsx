@@ -4,12 +4,28 @@ import { useState, useCallback } from "react"
 import { cleanUrl } from "@/lib/cleaner"
 import type { CleanerResult } from "@/lib/cleaner"
 
+function isValidUrl(str: string): boolean {
+  try {
+    new URL(str);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export default function UrlCleanerApp() {
   const [input, setInput] = useState("")
   const [result, setResult] = useState<CleanerResult | null>(null)
   const [copied, setCopied] = useState(false)
+  const [error, setError] = useState("")
 
   const handleClean = useCallback(() => {
+    setError("")
+    if (!input.trim()) return
+    if (!isValidUrl(input.trim())) {
+      setError("Enter a valid URL (include https:// or http://).")
+      return
+    }
     const res = cleanUrl(input)
     setResult(res)
     setCopied(false)
@@ -58,6 +74,10 @@ export default function UrlCleanerApp() {
         >
           Clean URL
         </button>
+
+        {error ? (
+          <p className="mt-2 text-sm text-red-500">{error}</p>
+        ) : null}
 
         {result && (
           <div className="mt-6 rounded-xl border border-blue-100 bg-white p-4 shadow-sm">
