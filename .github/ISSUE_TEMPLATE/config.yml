@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: url-cleaner Discussions
+    url: https://github.com/your-org/url-cleaner/discussions
+    about: Please ask questions and discuss here.
