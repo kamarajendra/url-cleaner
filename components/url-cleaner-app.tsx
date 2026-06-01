@@ -85,12 +85,22 @@ export default function UrlCleanerApp() {
               <>
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="text-sm font-semibold text-gray-700">Cleaned URL</h2>
-                  <button
-                    onClick={handleCopy}
-                    className="rounded-lg bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600 transition hover:bg-blue-100"
-                  >
-                    {copied ? "Copied!" : "Copy"}
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handleCopy}
+                      className="rounded-lg bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600 transition hover:bg-blue-100"
+                    >
+                      {copied ? "Copied!" : "Copy"}
+                    </button>
+                    <a
+                      href={result.cleaned}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-lg bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600 transition hover:bg-blue-100"
+                    >
+                      Open
+                    </a>
+                  </div>
                 </div>
                 <p className="break-all rounded-lg bg-blue-50 p-3 text-sm text-gray-800">
                   {result.cleaned}
